@@ -13,6 +13,8 @@
 		69665694222D4E63005F254E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69665693222D4E63005F254E /* Assets.xcassets */; };
 		69665697222D4E63005F254E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69665695222D4E63005F254E /* LaunchScreen.storyboard */; };
 		696656A2222D4E63005F254E /* AppstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696656A1222D4E63005F254E /* AppstronomyTests.swift */; };
+		696656AD222D93AE005F254E /* LandingPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696656AC222D93AD005F254E /* LandingPageController.swift */; };
+		696656AF222D9484005F254E /* SectionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696656AE222D9484005F254E /* SectionPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		6966569D222D4E63005F254E /* AppstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		696656A1222D4E63005F254E /* AppstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstronomyTests.swift; sourceTree = "<group>"; };
 		696656A3222D4E63005F254E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		696656AC222D93AD005F254E /* LandingPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageController.swift; sourceTree = "<group>"; };
+		696656AE222D9484005F254E /* SectionPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,9 +84,11 @@
 				6966568C222D4E60005F254E /* AppDelegate.swift */,
 				6966568E222D4E60005F254E /* ViewController.swift */,
 				69665690222D4E60005F254E /* Main.storyboard */,
+				696656AC222D93AD005F254E /* LandingPageController.swift */,
 				69665693222D4E63005F254E /* Assets.xcassets */,
 				69665695222D4E63005F254E /* LaunchScreen.storyboard */,
 				69665698222D4E63005F254E /* Info.plist */,
+				696656AE222D9484005F254E /* SectionPageViewController.swift */,
 			);
 			path = Appstronomy;
 			sourceTree = "<group>";
@@ -198,7 +204,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6966568F222D4E60005F254E /* ViewController.swift in Sources */,
+				696656AD222D93AE005F254E /* LandingPageController.swift in Sources */,
 				6966568D222D4E60005F254E /* AppDelegate.swift in Sources */,
+				696656AF222D9484005F254E /* SectionPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
