@@ -19,16 +19,19 @@ class AppstronomyTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+    func testNASAEndpointGetsAllRovers() {
+        let endpoint = NASAEndpoint.rovers
+        let request = endpoint.request
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+        XCTAssertEqual(request.url!.absoluteString, "https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=RfTKuHhGpRdbt0kwIulHQvb5UQSi5xG6MWpne9yn")
+    }
+    
+    func testNASAEndpointCuriosityRoverPhoto() {
+        let endpoint = NASAEndpoint.roverPhotos(from: "curiosity", selectedPhotoDate: "2019-03-01", selectedCamera: .fhaz)
+        
+        let request = endpoint.request
+        
+        XCTAssertEqual(request.url!.absoluteString, "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=RfTKuHhGpRdbt0kwIulHQvb5UQSi5xG6MWpne9yn&earth_date=2019-03-01&camera=fhaz")
     }
 
 }

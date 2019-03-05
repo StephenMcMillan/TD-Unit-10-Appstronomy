@@ -13,8 +13,11 @@
 		69665694222D4E63005F254E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69665693222D4E63005F254E /* Assets.xcassets */; };
 		69665697222D4E63005F254E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69665695222D4E63005F254E /* LaunchScreen.storyboard */; };
 		696656A2222D4E63005F254E /* AppstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696656A1222D4E63005F254E /* AppstronomyTests.swift */; };
-		696656AD222D93AE005F254E /* LandingPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696656AC222D93AD005F254E /* LandingPageController.swift */; };
-		696656AF222D9484005F254E /* SectionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696656AE222D9484005F254E /* SectionPageViewController.swift */; };
+		696656BD222E8431005F254E /* Rover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696656BC222E8431005F254E /* Rover.swift */; };
+		696656C9222E9ACE005F254E /* RoverPostcardOptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696656C8222E9ACE005F254E /* RoverPostcardOptionsController.swift */; };
+		69789C6C222ECADA00484F06 /* AppstronomyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69789C6B222ECADA00484F06 /* AppstronomyUtils.swift */; };
+		69789C6E222ECB1600484F06 /* UIViewController+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69789C6D222ECB1600484F06 /* UIViewController+Gradient.swift */; };
+		69789C70222ED47C00484F06 /* NASAEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69789C6F222ED47C00484F06 /* NASAEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +41,11 @@
 		6966569D222D4E63005F254E /* AppstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		696656A1222D4E63005F254E /* AppstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstronomyTests.swift; sourceTree = "<group>"; };
 		696656A3222D4E63005F254E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		696656AC222D93AD005F254E /* LandingPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageController.swift; sourceTree = "<group>"; };
-		696656AE222D9484005F254E /* SectionPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionPageViewController.swift; sourceTree = "<group>"; };
+		696656BC222E8431005F254E /* Rover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rover.swift; sourceTree = "<group>"; };
+		696656C8222E9ACE005F254E /* RoverPostcardOptionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoverPostcardOptionsController.swift; sourceTree = "<group>"; };
+		69789C6B222ECADA00484F06 /* AppstronomyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstronomyUtils.swift; sourceTree = "<group>"; };
+		69789C6D222ECB1600484F06 /* UIViewController+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Gradient.swift"; sourceTree = "<group>"; };
+		69789C6F222ED47C00484F06 /* NASAEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,11 +90,14 @@
 				6966568C222D4E60005F254E /* AppDelegate.swift */,
 				6966568E222D4E60005F254E /* ViewController.swift */,
 				69665690222D4E60005F254E /* Main.storyboard */,
-				696656AC222D93AD005F254E /* LandingPageController.swift */,
 				69665693222D4E63005F254E /* Assets.xcassets */,
 				69665695222D4E63005F254E /* LaunchScreen.storyboard */,
 				69665698222D4E63005F254E /* Info.plist */,
-				696656AE222D9484005F254E /* SectionPageViewController.swift */,
+				696656BC222E8431005F254E /* Rover.swift */,
+				696656C8222E9ACE005F254E /* RoverPostcardOptionsController.swift */,
+				69789C6B222ECADA00484F06 /* AppstronomyUtils.swift */,
+				69789C6D222ECB1600484F06 /* UIViewController+Gradient.swift */,
+				69789C6F222ED47C00484F06 /* NASAEndpoint.swift */,
 			);
 			path = Appstronomy;
 			sourceTree = "<group>";
@@ -203,10 +212,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69789C6E222ECB1600484F06 /* UIViewController+Gradient.swift in Sources */,
+				696656BD222E8431005F254E /* Rover.swift in Sources */,
+				69789C70222ED47C00484F06 /* NASAEndpoint.swift in Sources */,
+				69789C6C222ECADA00484F06 /* AppstronomyUtils.swift in Sources */,
+				696656C9222E9ACE005F254E /* RoverPostcardOptionsController.swift in Sources */,
 				6966568F222D4E60005F254E /* ViewController.swift in Sources */,
-				696656AD222D93AE005F254E /* LandingPageController.swift in Sources */,
 				6966568D222D4E60005F254E /* AppDelegate.swift in Sources */,
-				696656AF222D9484005F254E /* SectionPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
