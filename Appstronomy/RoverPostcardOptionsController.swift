@@ -8,7 +8,17 @@
 
 import UIKit
 
-
+enum NASAAppError: LocalizedError {
+    // Rover Section
+    case noPhotosForOptionsSelected
+    
+    var errorDescription: String? {
+        switch self {
+        case .noPhotosForOptionsSelected:
+            return "These little rovers are amazing but it doesn't seem like there are any pictures for the options you selected. Try selecting a different date or camera and try again."
+        }
+    }
+}
 
 class RoverPostcardOptionsController: UIViewController {
     
@@ -58,7 +68,7 @@ class RoverPostcardOptionsController: UIViewController {
                 self.rovers = rovers
 
             case .failed(let error):
-                print("Some error occured...")
+                self.displayAlert(for: error)
                 
             }
         }
@@ -105,7 +115,34 @@ class RoverPostcardOptionsController: UIViewController {
     
     // MARK: Next Button Action
     @IBAction func finishedSelectingRoverOptions(_ sender: Any) {
-        moveToPhotoPicker()
+        
+        // There is a chance that there may be no photos for the options that the user has selected so let's query the API AND THEN transition to the image page.
+        guard let selectedRoverIndex = selectedRoverIndex, let selectedCameraIndex = roverCameraSelectionTable.indexPathForSelectedRow else { return }
+        
+        let rover = rovers[selectedRoverIndex]
+        let selectedCamera = rover.cameras[selectedCameraIndex.row].name
+        
+        print("Rover: \(rover.name), Date: \(datePicker.date), Cam Selected: \(selectedCamera)")
+        
+        NASAClient.sharedClient.getPhotos(from: rover.name, on: datePicker.date, throughCamera: selectedCamera) { (result) in
+            
+            switch result {
+            case .success(let photos):
+                
+                guard photos.count > 0 else {
+                    // No photos with the specified filter.
+                    // Show error.
+                    self.displayAlert(for: NASAAppError.noPhotosForOptionsSelected)
+                    return
+                }
+                
+                // If there are some photos then we can move to the collection view.
+                self.moveToPhotoPicker(withPhotos: photos)
+                
+            case .failed(let error):
+                self.displayAlert(for: error)
+            }
+        }
     }
     
     // MARK: Dismiss Action
@@ -114,20 +151,11 @@ class RoverPostcardOptionsController: UIViewController {
     }
     
     // MARK: Navigation
-    func moveToPhotoPicker() {
-        guard let selectedRoverIndex = selectedRoverIndex, let selectedCameraIndex = roverCameraSelectionTable.indexPathForSelectedRow else { return }
-        
-        let rover = rovers[selectedRoverIndex]
-        let dateSelected = datePicker.date
-        let cameraSelected = rover.cameras[selectedCameraIndex.row]
-        
-        print("Rover: \(rover.name), Date: \(dateSelected), Cam Selected: \(cameraSelected)")
-        
-        
-        
+    func moveToPhotoPicker(withPhotos photos: [RoverPhoto]) {
+        let collectionView = RoverPhotoPickerCollectionView(photos: photos)
+        navigationController?.pushViewController(collectionView, animated: true)
     }
 }
-
 extension RoverPostcardOptionsController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

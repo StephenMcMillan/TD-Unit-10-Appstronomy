@@ -32,17 +32,40 @@ class NASAClient: APIClient {
         }
     }
     
+    func getPhotos(from roverName: String, on date: Date, throughCamera camera: String, completionHandler: @escaping (Result<[RoverPhoto], APIError>) -> Void) {
+        
+        let dateString = DateFormatter.nasaAPIDateFormatter.string(from: date)
+        let endpoint = NASAEndpoint.roverPhotos(from: roverName, selectedPhotoDate: dateString, selectedCamera: camera)
+        
+        download(from: endpoint.request) { (result: Result<RoverPhotoResult, APIError>) in
+            
+            switch result {
+            case .success(let roverPhotoResult):
+                completionHandler(.success(roverPhotoResult.photos))
+            case .failed(let error):
+                completionHandler(.failed(error))
+            }
+        }
+        
+        
+    }
+    
 }
 
 extension JSONDecoder {
     static let nasaDecoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd"
-        decoder.dateDecodingStrategy = .formatted(dateFormatter)
+        decoder.dateDecodingStrategy = .formatted(DateFormatter.nasaAPIDateFormatter)
         
         return decoder
+    }()
+}
+
+extension DateFormatter {
+    static var nasaAPIDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        return dateFormatter
     }()
 }

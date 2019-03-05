@@ -28,7 +28,6 @@ class AppstronomyTests: XCTestCase {
     
     func testNASAEndpointCuriosityRoverPhoto() {
         let endpoint = NASAEndpoint.roverPhotos(from: "curiosity", selectedPhotoDate: "2019-03-01", selectedCamera: "fhaz")
-        
         let request = endpoint.request
         
         XCTAssertEqual(request.url!.absoluteString, "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=RfTKuHhGpRdbt0kwIulHQvb5UQSi5xG6MWpne9yn&earth_date=2019-03-01&camera=fhaz")

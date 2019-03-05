@@ -8,12 +8,6 @@
 
 import Foundation
 
-//var testRovers: [Rover] = [
-//    Rover(name: "Curiosity", landingDate: "2012-08-06", maxDate: "2019-03-01", status: "active", cameras: [
-//        .fhaz, .navcam, .mast, .chemcam, .mahli, .mardi, .rhaz]),
-//    Rover(name: "Opportunity", landingDate: "2004-01-25", maxDate: "2004-01-25", status: "active", cameras: [.fhaz, .navcam, .pancam, .minites, .entry, .rhaz])
-//]
-
 struct RoverResult: Decodable {
     let rovers: [Rover]
 }
@@ -29,4 +23,12 @@ struct Rover: Decodable {
 
 struct Camera: Decodable {
     let name: String
+}
+
+struct RoverPhotoResult: Decodable {
+    let photos: [RoverPhoto]
+}
+
+struct RoverPhoto: Decodable {
+    let imgSrc: URL
 }
