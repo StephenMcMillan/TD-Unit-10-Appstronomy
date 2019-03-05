@@ -17,7 +17,7 @@ enum NASAEndpoint {
     case rovers
     
     // Get the photos associated with a specific rover
-    case roverPhotos(from: String, selectedPhotoDate: String, selectedCamera: Rover.RoverCamera)
+    case roverPhotos(from: String, selectedPhotoDate: String, selectedCamera: String)
 }
 
 // MARK: Endpoint extension for URL Request Construction
@@ -44,7 +44,7 @@ extension NASAEndpoint {
         switch self {
         case .roverPhotos(_, let selectedPhotoDate, let selectedCamera):
             items += [URLQueryItem(name: "earth_date", value: selectedPhotoDate),
-                      URLQueryItem(name: "camera", value: selectedCamera.rawValue)]
+                      URLQueryItem(name: "camera", value: selectedCamera)]
             
         default:
             break

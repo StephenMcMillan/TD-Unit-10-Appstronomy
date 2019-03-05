@@ -18,6 +18,9 @@
 		69789C6C222ECADA00484F06 /* AppstronomyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69789C6B222ECADA00484F06 /* AppstronomyUtils.swift */; };
 		69789C6E222ECB1600484F06 /* UIViewController+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69789C6D222ECB1600484F06 /* UIViewController+Gradient.swift */; };
 		69789C70222ED47C00484F06 /* NASAEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69789C6F222ED47C00484F06 /* NASAEndpoint.swift */; };
+		69789C72222EE0C500484F06 /* NASAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69789C71222EE0C500484F06 /* NASAClient.swift */; };
+		69789C74222EE0D600484F06 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69789C73222EE0D600484F06 /* APIClient.swift */; };
+		69789C76222F223500484F06 /* RoverPhotoPickerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69789C75222F223500484F06 /* RoverPhotoPickerCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,9 @@
 		69789C6B222ECADA00484F06 /* AppstronomyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstronomyUtils.swift; sourceTree = "<group>"; };
 		69789C6D222ECB1600484F06 /* UIViewController+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Gradient.swift"; sourceTree = "<group>"; };
 		69789C6F222ED47C00484F06 /* NASAEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAEndpoint.swift; sourceTree = "<group>"; };
+		69789C71222EE0C500484F06 /* NASAClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAClient.swift; sourceTree = "<group>"; };
+		69789C73222EE0D600484F06 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		69789C75222F223500484F06 /* RoverPhotoPickerCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoverPhotoPickerCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,9 +101,12 @@
 				69665698222D4E63005F254E /* Info.plist */,
 				696656BC222E8431005F254E /* Rover.swift */,
 				696656C8222E9ACE005F254E /* RoverPostcardOptionsController.swift */,
+				69789C75222F223500484F06 /* RoverPhotoPickerCollectionView.swift */,
 				69789C6B222ECADA00484F06 /* AppstronomyUtils.swift */,
 				69789C6D222ECB1600484F06 /* UIViewController+Gradient.swift */,
 				69789C6F222ED47C00484F06 /* NASAEndpoint.swift */,
+				69789C71222EE0C500484F06 /* NASAClient.swift */,
+				69789C73222EE0D600484F06 /* APIClient.swift */,
 			);
 			path = Appstronomy;
 			sourceTree = "<group>";
@@ -216,9 +225,12 @@
 				696656BD222E8431005F254E /* Rover.swift in Sources */,
 				69789C70222ED47C00484F06 /* NASAEndpoint.swift in Sources */,
 				69789C6C222ECADA00484F06 /* AppstronomyUtils.swift in Sources */,
+				69789C76222F223500484F06 /* RoverPhotoPickerCollectionView.swift in Sources */,
 				696656C9222E9ACE005F254E /* RoverPostcardOptionsController.swift in Sources */,
+				69789C72222EE0C500484F06 /* NASAClient.swift in Sources */,
 				6966568F222D4E60005F254E /* ViewController.swift in Sources */,
 				6966568D222D4E60005F254E /* AppDelegate.swift in Sources */,
+				69789C74222EE0D600484F06 /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

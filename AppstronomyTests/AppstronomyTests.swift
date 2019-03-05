@@ -27,7 +27,7 @@ class AppstronomyTests: XCTestCase {
     }
     
     func testNASAEndpointCuriosityRoverPhoto() {
-        let endpoint = NASAEndpoint.roverPhotos(from: "curiosity", selectedPhotoDate: "2019-03-01", selectedCamera: .fhaz)
+        let endpoint = NASAEndpoint.roverPhotos(from: "curiosity", selectedPhotoDate: "2019-03-01", selectedCamera: "fhaz")
         
         let request = endpoint.request
         

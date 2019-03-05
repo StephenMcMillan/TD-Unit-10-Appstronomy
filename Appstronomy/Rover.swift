@@ -8,31 +8,25 @@
 
 import Foundation
 
-var testRovers: [Rover] = [
-    Rover(name: "Curiosity", landingDate: "2012-08-06", maxDate: "2019-03-01", status: "active", cameras: [
-        .fhaz, .navcam, .mast, .chemcam, .mahli, .mardi, .rhaz]),
-    Rover(name: "Opportunity", landingDate: "2004-01-25", maxDate: "2004-01-25", status: "active", cameras: [.fhaz, .navcam, .pancam, .minites, .entry, .rhaz])
-]
+//var testRovers: [Rover] = [
+//    Rover(name: "Curiosity", landingDate: "2012-08-06", maxDate: "2019-03-01", status: "active", cameras: [
+//        .fhaz, .navcam, .mast, .chemcam, .mahli, .mardi, .rhaz]),
+//    Rover(name: "Opportunity", landingDate: "2004-01-25", maxDate: "2004-01-25", status: "active", cameras: [.fhaz, .navcam, .pancam, .minites, .entry, .rhaz])
+//]
 
-struct Rover {
+struct RoverResult: Decodable {
+    let rovers: [Rover]
+}
+
+struct Rover: Decodable {
     let name: String
-    let landingDate: String
-    let maxDate: String
+    let landingDate: Date
+    let maxDate: Date
     let status: String
     
-    enum RoverCamera: String, CaseIterable {
-        case fhaz
-        case rhaz
-        case mast
-        case chemcam
-        case mahli
-        case mardi
-        case navcam
-        case pancam
-        case minites
-        case entry
-    }
-    
-    let cameras: [RoverCamera]
-    
+    let cameras: [Camera]
+}
+
+struct Camera: Decodable {
+    let name: String
 }
