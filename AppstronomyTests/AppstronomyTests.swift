@@ -10,6 +10,8 @@ import XCTest
 @testable import Appstronomy
 
 class AppstronomyTests: XCTestCase {
+    
+    fileprivate let apiQueryItem = "api_key=\(apiKey)"
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -18,19 +20,39 @@ class AppstronomyTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testNASAEndpointGetsAllRovers() {
+    
+    func testMarsRoverEndpointFor_AllRovers() {
+        // Build an API Call
         let endpoint = NASAEndpoint.rovers
-        let request = endpoint.request
-
-        XCTAssertEqual(request.url!.absoluteString, "https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=RfTKuHhGpRdbt0kwIulHQvb5UQSi5xG6MWpne9yn")
+        
+        // Test the Endpoint returns what we expect.
+        let expectedResult = "https://api.nasa.gov/mars-photos/api/v1/rovers?\(apiQueryItem)"
+        XCTAssertEqual(endpoint.request.url!.absoluteString, expectedResult)
     }
     
-    func testNASAEndpointCuriosityRoverPhoto() {
-        let endpoint = NASAEndpoint.roverPhotos(from: "curiosity", selectedPhotoDate: "2019-03-01", selectedCamera: "fhaz")
-        let request = endpoint.request
+    func testMarsRoverEndpointFor_SpiritRoverWithOptions() {
         
-        XCTAssertEqual(request.url!.absoluteString, "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=RfTKuHhGpRdbt0kwIulHQvb5UQSi5xG6MWpne9yn&earth_date=2019-03-01&camera=fhaz")
+        // Build an API Call
+        let testDate = DateComponents(calendar: Calendar.current, year: 2009, month: 10, day: 12).date!
+        let roverName = "spirit"
+        let selectedCamera = "fhaz"
+        let endpoint = NASAEndpoint.roverPhotos(from: roverName, options: (date: testDate, selectedCamera: selectedCamera))
+        
+        // Test the Endpoint returns what we expect...
+        let expectedResult = "https://api.nasa.gov/mars-photos/api/v1/rovers/\(roverName)/photos?\(apiQueryItem)&earth_date=\(testDate.nasaAPIStringRepresentation())&camera=\(selectedCamera)"
+        
+        XCTAssertEqual(endpoint.request.url!.absoluteString, expectedResult)
     }
+    
+    func testMarsRoverEndpointFor_CuriosityWithNoOptions() {
+        
+        // Build an API Call
+        let roverName = "curiosity"
+        let endpoint = NASAEndpoint.roverPhotos(from: roverName, options: nil)
+        
+        // Test the Endpoint returns what we expect...
+        let expectedResult = "https://api.nasa.gov/mars-photos/api/v1/rovers/\(roverName)/latest_photos?\(apiQueryItem)"
+        XCTAssertEqual(endpoint.request.url!.absoluteString, expectedResult)
+        }
 
 }

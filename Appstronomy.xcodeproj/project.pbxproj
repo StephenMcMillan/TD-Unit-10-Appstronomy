@@ -24,6 +24,7 @@
 		69789C7A222F307B00484F06 /* UIViewController+ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69789C79222F307B00484F06 /* UIViewController+ErrorAlert.swift */; };
 		69789C7C222F355300484F06 /* ImageFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69789C7B222F355300484F06 /* ImageFlowLayout.swift */; };
 		69789C85222F56DE00484F06 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69789C84222F56DE00484F06 /* LandingViewController.swift */; };
+		6992A530222FE42400B704FB /* APIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6992A52F222FE42400B704FB /* APIErrors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		69789C79222F307B00484F06 /* UIViewController+ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ErrorAlert.swift"; sourceTree = "<group>"; };
 		69789C7B222F355300484F06 /* ImageFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFlowLayout.swift; sourceTree = "<group>"; };
 		69789C84222F56DE00484F06 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		6992A52F222FE42400B704FB /* APIErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				69789C73222EE0D600484F06 /* APIClient.swift */,
 				69789C71222EE0C500484F06 /* NASAClient.swift */,
 				69789C6F222ED47C00484F06 /* NASAEndpoint.swift */,
+				6992A52F222FE42400B704FB /* APIErrors.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				69789C6E222ECB1600484F06 /* UIViewController+Gradient.swift in Sources */,
+				6992A530222FE42400B704FB /* APIErrors.swift in Sources */,
 				69789C78222F289400484F06 /* ImageCollectionViewCell.swift in Sources */,
 				696656BD222E8431005F254E /* Rover.swift in Sources */,
 				69789C7C222F355300484F06 /* ImageFlowLayout.swift in Sources */,

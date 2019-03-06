@@ -12,11 +12,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     static let reuseIdentifier = String(describing: ImageCollectionViewCell.self)
  
-    lazy var imageView: UIImageView = {
-        let imageView = UIImageView(frame: self.bounds)
-        imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
+    @IBOutlet weak var imageView: UIImageView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,6 +28,5 @@ class ImageCollectionViewCell: UICollectionViewCell {
     func configureView() {
         self.layer.cornerRadius = 12.0
         self.clipsToBounds = true
-        self.addSubview(imageView)
     }
 }

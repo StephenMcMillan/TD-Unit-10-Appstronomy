@@ -8,41 +8,107 @@
 
 import UIKit
 
-class RoverPhotoPickerCollectionView: UICollectionViewController {
+class RoverPhotoPickerCollectionView: UIViewController {
     
-    var photos: [RoverPhoto] = []
+    // MARK: Interface Builder Outlets
+    @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
     
-    init(photos: [RoverPhoto]) {
-        self.photos = photos
-        let layout = ImageFlowLayout()
-        super.init(collectionViewLayout: layout)
-    }
+    // MARK: Stored Properties
+    var roverName: String?
+    var photoOptions: NASAEndpoint.RoverPhotoOptions?
     
-    // Code use only, no storyboard use.
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    var photos = [RoverPhoto]() {
+        didSet {
+            collectionView.reloadData()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        collectionView.backgroundColor = UIColor.clear
-        configureGradient(colors: AppstronomyUtils.marsColors)
 
-        // Register cell classes
-        self.collectionView!.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.reuseIdentifier)
+        headerHeightConstraint.constant = 0.0
+        headerLabel.alpha = 0.0
+        configureGradient(colors: AppstronomyUtils.marsColors)
+        
+        // Collection View Set-up
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.backgroundColor = .clear
+        collectionView.dataSource = self
+//        collectionView.delegate = self
 
         // Do any additional setup after loading the view.
+        attemptPreferredPhotoDownload()
     }
+    
+    func attemptPreferredPhotoDownload() {
+        
+        guard let roverName = roverName, let photoOptions = photoOptions else { return }
+        
+        NASAClient.sharedClient.getPhotos(from: roverName, options: photoOptions) { (result) in
+            
+            switch result {
+            case .success(let photos):
+                
+                print("DOWNLOAD SUCCESSFUL...")
+                print(photos.count)
+                
+                guard photos.count > 0 else {
+                    // If there were no photos for the users preferences then just get the latest photos.
+                    self.getLatestRoverPhotos()
+                    return
+                }
+                
+                print("download some photos for users preferences")
+                
+                // If there are some photos then we can move to the collection view.
+                self.photos = photos
+                
+            case .failed(let error):
+                self.displayAlert(for: error)
+            }
+        }
+    }
+    
+    func getLatestRoverPhotos() {
+        // Options is nil so we can get the latest photos...
+        
+        guard let roverName = roverName else { return }
+        
+        self.headerHeightConstraint.constant = 80.0
+        self.headerLabel.text = "We couldn't find any photos matching your critera so here are the latest images from \(roverName.capitalized)!"
+        UIView.animate(withDuration: 1.0, animations: {
+            self.headerLabel.alpha = 0.8
+            self.view.layoutIfNeeded()
+        })
+        
+        print("Getting latest...")
+        NASAClient.sharedClient.getPhotos(from: roverName, options: nil) { (result) in
+            switch result {
+            case .success(let photos):
+                self.photos = photos
+                print("done getting latest.")
+                
+                
+            case .failed(let error):
+                print("LATEST DOWNLOAD FAILED.")
+                self.displayAlert(for: error)
+            }
+        }
+    }
+}
 
+extension RoverPhotoPickerCollectionView: UICollectionViewDataSource {
     // MARK: UICollectionViewDataSource
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos.count
     }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.reuseIdentifier, for: indexPath) as! ImageCollectionViewCell
-        
+        print(cell.frame)
+        print(cell.imageView.frame)
         cell.backgroundColor = .red
         
         if let data = try? Data(contentsOf: photos[indexPath.row].imgSrc) {
@@ -51,36 +117,5 @@ class RoverPhotoPickerCollectionView: UICollectionViewController {
         
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
-    }
-    */
-
 }

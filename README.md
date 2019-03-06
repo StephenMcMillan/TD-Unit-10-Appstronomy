@@ -7,3 +7,5 @@ Planned Features:
 - Mars Rover Postcard Creator
 - Earth Imagery Viewer
 - View Mars Rovers in Augmented Reality
+
+Icons made by Smashicons on www.flaticon.com

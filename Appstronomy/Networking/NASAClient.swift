@@ -32,16 +32,29 @@ class NASAClient: APIClient {
         }
     }
     
-    func getPhotos(from roverName: String, on date: Date, throughCamera camera: String, completionHandler: @escaping (Result<[RoverPhoto], APIError>) -> Void) {
+    func getPhotos(from roverName: String, options: NASAEndpoint.RoverPhotoOptions?, completionHandler: @escaping (Result<[RoverPhoto], APIError>) -> Void) {
         
-        let dateString = DateFormatter.nasaAPIDateFormatter.string(from: date)
-        let endpoint = NASAEndpoint.roverPhotos(from: roverName, selectedPhotoDate: dateString, selectedCamera: camera)
+        let endpoint = NASAEndpoint.roverPhotos(from: roverName, options: options)
         
-        download(from: endpoint.request) { (result: Result<RoverPhotoResult, APIError>) in
+        download(from: endpoint.request) { (result: Result<[String: [RoverPhoto]], APIError>) in
             
             switch result {
-            case .success(let roverPhotoResult):
-                completionHandler(.success(roverPhotoResult.photos))
+            case .success(let resultDictionary):
+                
+                // Two wrapper keys are possible for the Photos endpoint, this is a bit hacky but it works >.<
+                
+                dump(resultDictionary)
+                
+                if let roverPhotos = resultDictionary["photos"] {
+                    completionHandler(.success(roverPhotos))
+                    
+                } else if let latestPhotos = resultDictionary["latestPhotos"] {
+                    completionHandler(.success(latestPhotos))
+                    
+                } else {
+                    completionHandler(.failed(APIError.missingData))
+                }
+                
             case .failed(let error):
                 completionHandler(.failed(error))
             }
@@ -68,4 +81,12 @@ extension DateFormatter {
         dateFormatter.dateFormat = "YYYY-MM-dd"
         return dateFormatter
     }()
+}
+
+extension Date {
+    // Instance method returns self as a string represented in format 'YYYY-MM-dd' for use by the NASA API
+    func nasaAPIStringRepresentation() -> String {
+        let formatter = DateFormatter.nasaAPIDateFormatter
+        return formatter.string(from: self)
+    }
 }

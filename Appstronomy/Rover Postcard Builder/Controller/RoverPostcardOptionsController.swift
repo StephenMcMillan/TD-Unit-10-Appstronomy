@@ -117,32 +117,9 @@ class RoverPostcardOptionsController: UIViewController {
     @IBAction func finishedSelectingRoverOptions(_ sender: Any) {
         
         // There is a chance that there may be no photos for the options that the user has selected so let's query the API AND THEN transition to the image page.
-        guard let selectedRoverIndex = selectedRoverIndex, let selectedCameraIndex = roverCameraSelectionTable.indexPathForSelectedRow else { return }
+
         
-        let rover = rovers[selectedRoverIndex]
-        let selectedCamera = rover.cameras[selectedCameraIndex.row].name
-        
-        print("Rover: \(rover.name), Date: \(datePicker.date), Cam Selected: \(selectedCamera)")
-        
-        NASAClient.sharedClient.getPhotos(from: rover.name, on: datePicker.date, throughCamera: selectedCamera) { (result) in
-            
-            switch result {
-            case .success(let photos):
-                
-                guard photos.count > 0 else {
-                    // No photos with the specified filter.
-                    // Show error.
-                    self.displayAlert(for: NASAAppError.noPhotosForOptionsSelected)
-                    return
-                }
-                
-                // If there are some photos then we can move to the collection view.
-                self.moveToPhotoPicker(withPhotos: photos)
-                
-            case .failed(let error):
-                self.displayAlert(for: error)
-            }
-        }
+
     }
     
     // MARK: Dismiss Action
@@ -151,9 +128,16 @@ class RoverPostcardOptionsController: UIViewController {
     }
     
     // MARK: Navigation
-    func moveToPhotoPicker(withPhotos photos: [RoverPhoto]) {
-        let collectionView = RoverPhotoPickerCollectionView(photos: photos)
-        navigationController?.pushViewController(collectionView, animated: true)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowPhotoPicker", let destinationController = segue.destination as? RoverPhotoPickerCollectionView {
+            
+            guard let selectedRoverIndex = selectedRoverIndex,
+                  let selectedCameraIndex = roverCameraSelectionTable.indexPathForSelectedRow?.row else { return }
+            
+            let rover = rovers[selectedRoverIndex]
+            destinationController.roverName = rover.name
+            destinationController.photoOptions = (date: datePicker.date, selectedCamera: rover.cameras[selectedCameraIndex].name)
+        }
     }
 }
 extension RoverPostcardOptionsController: UITableViewDataSource {

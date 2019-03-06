@@ -8,7 +8,8 @@
 
 import Foundation
 
-fileprivate let APIKeyQueryItem = URLQueryItem(name: "api_key", value: "RfTKuHhGpRdbt0kwIulHQvb5UQSi5xG6MWpne9yn")
+let apiKey = "RfTKuHhGpRdbt0kwIulHQvb5UQSi5xG6MWpne9yn"
+fileprivate let APIKeyQueryItem = URLQueryItem(name: "api_key", value: apiKey)
 
 // Describes the various endpoints that will be accessed.
 enum NASAEndpoint {
@@ -17,7 +18,8 @@ enum NASAEndpoint {
     case rovers
     
     // Get the photos associated with a specific rover
-    case roverPhotos(from: String, selectedPhotoDate: String, selectedCamera: String)
+    typealias RoverPhotoOptions = (date: Date, selectedCamera: String)
+    case roverPhotos(from: String, options: RoverPhotoOptions?)
 }
 
 // MARK: Endpoint extension for URL Request Construction
@@ -30,7 +32,11 @@ extension NASAEndpoint {
         switch self {
         case .rovers:
             return "/mars-photos/api/v1/rovers"
-        case .roverPhotos(let name, _, _):
+            
+        case .roverPhotos(let name, .none): // If nil photo options use latest_photos
+            return "/mars-photos/api/v1/rovers/\(name)/latest_photos"
+            
+        case .roverPhotos(let name, .some): // If photo options are present then the path is different
             return "/mars-photos/api/v1/rovers/\(name)/photos"
         }
     }
@@ -42,10 +48,9 @@ extension NASAEndpoint {
         
         
         switch self {
-        case .roverPhotos(_, let selectedPhotoDate, let selectedCamera):
-            items += [URLQueryItem(name: "earth_date", value: selectedPhotoDate),
-                      URLQueryItem(name: "camera", value: selectedCamera)]
-            
+        case .roverPhotos(_, let .some(photoOptions)):
+            items += [URLQueryItem(name: "earth_date", value: photoOptions.date.nasaAPIStringRepresentation()),
+                      URLQueryItem(name: "camera", value: photoOptions.selectedCamera)]
         default:
             break
         }

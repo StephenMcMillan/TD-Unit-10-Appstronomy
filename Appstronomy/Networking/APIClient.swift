@@ -8,13 +8,6 @@
 
 import Foundation
 
-enum APIError: Error {
-    case transportError(message: String)
-    case invalidResponse(statusCode: Int)
-    case missingData
-    case decodingFailure(reason: String)
-}
-
 enum Result<T, E: Error> {
     case success(T)
     case failed(E)
