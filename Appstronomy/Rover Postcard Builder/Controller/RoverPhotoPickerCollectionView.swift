@@ -36,7 +36,7 @@ class RoverPhotoPickerCollectionView: UIViewController {
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .clear
         collectionView.dataSource = self
-//        collectionView.delegate = self
+        collectionView.delegate = self
 
         // Do any additional setup after loading the view.
         attemptPreferredPhotoDownload()
@@ -117,5 +117,24 @@ extension RoverPhotoPickerCollectionView: UICollectionViewDataSource {
         
         return cell
     }
-    
+}
+
+extension RoverPhotoPickerCollectionView: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // 1. Get the Collection View Cell that the user tapped.
+        guard let selectedCell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell else { return }
+        
+        // 2. Extract the image from the cell that the user tapped. If the image has not yet been set (in other words it didn't finish downloading) then the method will return and the builder view won't be presented.
+        guard let selectedImage = selectedCell.imageView.image else { return }
+        
+        // 3. Instantiate the Builder View Controller using its storyboard identifier.
+        guard let builderVC = storyboard?.instantiateViewController(withIdentifier: RoverPostcardBuilderController.storyboardIdentifier) as? RoverPostcardBuilderController else { return }
+        
+        // 4. Pass the selected image to the builder controller.
+        builderVC.image = selectedImage
+        
+        // 5. Present the Builder VC
+        navigationController?.pushViewController(builderVC, animated: true)
+    }
 }
