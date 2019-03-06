@@ -89,8 +89,6 @@ class RoverPostcardOptionsController: UIViewController {
         // Set-up for the rover that the user tapped on.
         self.selectedRoverIndex = selectedRoverIndex
         
-        print(rovers[selectedRoverIndex])
-        
         // Update date picker to reflect the min/max date of the rover
         datePicker.minimumDate = rovers[selectedRoverIndex].landingDate
         datePicker.maximumDate = rovers[selectedRoverIndex].maxDate
@@ -111,15 +109,6 @@ class RoverPostcardOptionsController: UIViewController {
             self.roverCameraSelectionTableContainer.alpha = 1.0
             self.view.layoutIfNeeded()
         }
-    }
-    
-    // MARK: Next Button Action
-    @IBAction func finishedSelectingRoverOptions(_ sender: Any) {
-        
-        // There is a chance that there may be no photos for the options that the user has selected so let's query the API AND THEN transition to the image page.
-
-        
-
     }
     
     // MARK: Dismiss Action
@@ -172,6 +161,7 @@ extension RoverPostcardOptionsController: UITableViewDataSource {
         
         return cell
     }
+    
 }
 
 extension RoverPostcardOptionsController: UITableViewDelegate {
@@ -180,14 +170,11 @@ extension RoverPostcardOptionsController: UITableViewDelegate {
         
         if tableView == roverSelectionTable {
             configure(selectedRoverIndex: indexPath.row)
+            self.nextButton.isEnabled = false
             
         } else if tableView == roverCameraSelectionTable {
-            
             backingScrollView.scrollRectToVisible(nextButton.frame, animated: true)
-            
-            UIView.animate(withDuration: coherentAnimationDuration) {
-                self.nextButton.alpha = 1.0
-            }
+            self.nextButton.isEnabled = true
         }
     }
 }

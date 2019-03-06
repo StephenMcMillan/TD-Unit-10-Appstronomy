@@ -73,11 +73,19 @@ class RoverPostcardBuilderController: UIViewController {
         }
         
         previewImageView.image = newImage
+        
+        if !shareButton.isEnabled {
+            shareButton.isEnabled = true
+        }
     }
     
     // MARK: Share Button
     @IBAction func sharePostcard(_ sender: Any) {
         // TODO: Add a share sheet!
+        guard let imageToShare = previewImageView.image else { return }
+        
+        let activityController = UIActivityViewController(activityItems: [imageToShare], applicationActivities: nil)
+        present(activityController, animated: true, completion: nil)
     }
     
     // MARK: Keyboard helper

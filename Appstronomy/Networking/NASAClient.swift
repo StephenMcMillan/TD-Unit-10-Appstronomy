@@ -48,7 +48,7 @@ class NASAClient: APIClient {
                 if let roverPhotos = resultDictionary["photos"] {
                     completionHandler(.success(roverPhotos))
                     
-                } else if let latestPhotos = resultDictionary["latestPhotos"] {
+                } else if let latestPhotos = resultDictionary["latest_photos"] {
                     completionHandler(.success(latestPhotos))
                     
                 } else {
