@@ -15,4 +15,13 @@ extension UIViewController {
         gradientLayer.colors = colors.map { $0.cgColor }
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
+    
+    func configureGradient(on view: UIView, colors: [UIColor]) {
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = view.bounds
+        gradientLayer.colors = colors.map { $0.cgColor }
+        
+        view.layer.insertSublayer(gradientLayer, at: 0)
+    }
 }

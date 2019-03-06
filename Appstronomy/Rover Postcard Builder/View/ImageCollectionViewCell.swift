@@ -29,7 +29,6 @@ class ImageCollectionViewCell: UICollectionViewCell {
     }
     
     // Custom View
-    
     func configureView() {
         self.layer.cornerRadius = 12.0
         self.clipsToBounds = true
