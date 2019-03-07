@@ -45,4 +45,15 @@ class LandingViewController: UIViewController {
             self.roverBackingView.alpha = 1.0
         })
     }
+    
+    @IBAction func showEyeInTheSkySection(_ sender: Any) {
+        
+        // Create a Location Search Controller
+        let searchController = LocationSearchController(style: .plain)
+        
+        // Create a Nav Controller to manage the flow of this section.
+        let navigationController = UINavigationController(rootViewController: searchController)
+        
+        present(navigationController, animated: true , completion: nil)
+    }
 }

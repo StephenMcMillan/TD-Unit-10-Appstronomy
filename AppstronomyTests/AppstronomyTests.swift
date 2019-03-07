@@ -53,6 +53,15 @@ class AppstronomyTests: XCTestCase {
         // Test the Endpoint returns what we expect...
         let expectedResult = "https://api.nasa.gov/mars-photos/api/v1/rovers/\(roverName)/latest_photos?\(apiQueryItem)"
         XCTAssertEqual(endpoint.request.url!.absoluteString, expectedResult)
+    }
+    
+    func testNASAClient_CreatesCorrectDate() {
+        guard let date = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 29).date else {
+            XCTFail("Failed to create a date to carry out the test.")
+            return
         }
-
+        
+        let expectedResult = "2018-10-29"
+        XCTAssertEqual(date.nasaAPIStringRepresentation(), expectedResult)
+    }
 }

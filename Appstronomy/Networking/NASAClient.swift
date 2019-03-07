@@ -47,8 +47,8 @@ class NASAClient: APIClient {
                 
                 if let roverPhotos = resultDictionary["photos"] {
                     completionHandler(.success(roverPhotos))
-                    
-                } else if let latestPhotos = resultDictionary["latest_photos"] {
+                    // FIXME: latest_photos & latestPhotos seems to cause an error. FIX.
+                } else if let latestPhotos = resultDictionary["latestPhotos"] {
                     completionHandler(.success(latestPhotos))
                     
                 } else {
@@ -59,34 +59,5 @@ class NASAClient: APIClient {
                 completionHandler(.failed(error))
             }
         }
-        
-        
-    }
-    
-}
-
-extension JSONDecoder {
-    static let nasaDecoder: JSONDecoder = {
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        decoder.dateDecodingStrategy = .formatted(DateFormatter.nasaAPIDateFormatter)
-        
-        return decoder
-    }()
-}
-
-extension DateFormatter {
-    static var nasaAPIDateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd"
-        return dateFormatter
-    }()
-}
-
-extension Date {
-    // Instance method returns self as a string represented in format 'YYYY-MM-dd' for use by the NASA API
-    func nasaAPIStringRepresentation() -> String {
-        let formatter = DateFormatter.nasaAPIDateFormatter
-        return formatter.string(from: self)
     }
 }

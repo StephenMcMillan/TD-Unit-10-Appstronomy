@@ -70,12 +70,16 @@
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.21176470588235294" green="0.21568627450980393" blue="0.58431372549019611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="cN4-rv-wd0" secondAttribute="bottom" constant="8" id="5n2-vv-wH4"/>
                                             <constraint firstItem="cN4-rv-wd0" firstAttribute="top" secondItem="LXQ-iq-pYJ" secondAttribute="top" constant="8" id="RDT-5Z-Lid"/>
                                             <constraint firstAttribute="trailing" secondItem="cN4-rv-wd0" secondAttribute="trailing" id="qZ1-Tb-VSH"/>
                                             <constraint firstItem="cN4-rv-wd0" firstAttribute="leading" secondItem="LXQ-iq-pYJ" secondAttribute="leading" id="v3M-Al-mUd"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="FUK-uh-vBg" appends="YES" id="DBP-Wr-lO9"/>
+                                        </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fLb-SD-6Vv">
                                         <rect key="frame" x="0.0" y="451.5" width="374" height="205.5"/>
@@ -142,6 +146,11 @@
                 <tapGestureRecognizer id="qdp-th-XmU" userLabel="Mars Tap Recognizer">
                     <connections>
                         <segue destination="7o7-HT-zjl" kind="presentation" id="ALW-us-nQr"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="FUK-uh-vBg" userLabel="Eye in The Sky Tap Recognizer">
+                    <connections>
+                        <action selector="showEyeInTheSkySection:" destination="xL2-Qe-wpX" id="SoV-Rn-vCa"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -531,7 +540,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="jic-9y-XS3">
-                                        <rect key="frame" x="0.0" y="20" width="414" height="584.5"/>
+                                        <rect key="frame" x="0.0" y="20" width="414" height="570.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G8t-WP-kHk">
                                                 <rect key="frame" x="20.5" y="0.0" width="373" height="372.5"/>
@@ -545,7 +554,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ANs-xl-dJ4">
-                                                <rect key="frame" x="20.5" y="412.5" width="373" height="80"/>
+                                                <rect key="frame" x="20.5" y="412.5" width="373" height="66"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5g-Vn-t5a">
                                                         <rect key="frame" x="0.0" y="0.0" width="373" height="24"/>
@@ -554,7 +563,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Wish you were here!" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aFa-Nr-ypb" customClass="PaddedTextField" customModule="Appstronomy" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="36" width="373" height="44"/>
+                                                        <rect key="frame" x="0.0" y="36" width="373" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -566,7 +575,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ry-Ba-dhp">
-                                                <rect key="frame" x="20.5" y="532.5" width="373" height="52"/>
+                                                <rect key="frame" x="20.5" y="518.5" width="373" height="52"/>
                                                 <color key="backgroundColor" red="0.043137254899999998" green="0.90980392160000001" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <inset key="contentEdgeInsets" minX="0.0" minY="16" maxX="0.0" maxY="16"/>

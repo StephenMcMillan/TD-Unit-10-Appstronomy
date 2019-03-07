@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher // This Framework makes the download of images much easier and allows for easy caching.
 
 class RoverPhotoPickerCollectionView: UIViewController {
     
@@ -107,13 +108,14 @@ extension RoverPhotoPickerCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.reuseIdentifier, for: indexPath) as! ImageCollectionViewCell
-        print(cell.frame)
-        print(cell.imageView.frame)
-        cell.backgroundColor = .red
+
+        cell.backgroundColor = #colorLiteral(red: 0.2941176471, green: 0.07058823529, blue: 0.2823529412, alpha: 0.1986033818)
         
-        if let data = try? Data(contentsOf: photos[indexPath.row].imgSrc) {
-            cell.imageView.image = UIImage(data: data)
-        }
+        let imageUrl = photos[indexPath.row].imgSrc
+        
+        // Set an Indicator on the image view.
+        cell.imageView.kf.indicatorType = .activity
+        cell.imageView.kf.setImage(with: imageUrl, options: [.transition(ImageTransition.fade(0.2))])
         
         return cell
     }
