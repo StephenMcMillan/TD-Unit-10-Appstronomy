@@ -24,6 +24,7 @@ class LocationSearchController: UITableViewController {
         let searchController = UISearchController(searchResultsController: self.locationSuggestionsController)
         searchController.searchResultsUpdater = self.locationSuggestionsController
         searchController.searchBar.delegate = self
+        searchController.searchBar.tintColor = #colorLiteral(red: 0.2117647059, green: 0.2156862745, blue: 0.5843137255, alpha: 1)
         return searchController
     }()
     
@@ -41,6 +42,8 @@ class LocationSearchController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Search for a Location"
 
         // TODO: Fix the gradient.
 //        configureGradient(colors: AppstronomyUtils.earthColors)
@@ -88,7 +91,12 @@ class LocationSearchController: UITableViewController {
             
         } else if tableView == self.tableView {
             // Option B: User tapped a cell in this table view.
+            guard let selectedIndex = self.tableView.indexPathForSelectedRow else { return }
             
+            let selectedPlace = places[selectedIndex.row]
+            
+            let earthImageViewerController = EarthImageViewerController(coordinate: selectedPlace.placemark.coordinate)
+            navigationController?.pushViewController(earthImageViewerController, animated: true)
         }
     }
     

@@ -52,7 +52,7 @@ class LandingViewController: UIViewController {
         let searchController = LocationSearchController(style: .plain)
         
         // Create a Nav Controller to manage the flow of this section.
-        let navigationController = UINavigationController(rootViewController: searchController)
+        let navigationController = AppstronomyNavigationController(rootViewController: searchController)
         
         present(navigationController, animated: true , completion: nil)
     }

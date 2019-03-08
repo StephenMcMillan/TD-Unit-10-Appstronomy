@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MapKit
 
 let apiKey = "RfTKuHhGpRdbt0kwIulHQvb5UQSi5xG6MWpne9yn"
 fileprivate let APIKeyQueryItem = URLQueryItem(name: "api_key", value: apiKey)
@@ -20,6 +21,8 @@ enum NASAEndpoint {
     // Get the photos associated with a specific rover
     typealias RoverPhotoOptions = (date: Date, selectedCamera: String)
     case roverPhotos(from: String, options: RoverPhotoOptions?)
+    
+    case earthImage(coordinate: CLLocationCoordinate2D)
 }
 
 // MARK: Endpoint extension for URL Request Construction
@@ -38,6 +41,9 @@ extension NASAEndpoint {
             
         case .roverPhotos(let name, .some): // If photo options are present then the path is different
             return "/mars-photos/api/v1/rovers/\(name)/photos"
+            
+        case .earthImage:
+            return "/planetary/earth/imagery/"
         }
     }
     
@@ -46,11 +52,18 @@ extension NASAEndpoint {
         // All API Requests must have the API Key at the start.
         var items = [APIKeyQueryItem]
         
-        
         switch self {
         case .roverPhotos(_, let .some(photoOptions)):
             items += [URLQueryItem(name: "earth_date", value: photoOptions.date.nasaAPIStringRepresentation()),
                       URLQueryItem(name: "camera", value: photoOptions.selectedCamera)]
+            
+        case .earthImage(let coordinate):
+            
+            items += [URLQueryItem(name: "lat", value: coordinate.latitude.description),
+                      URLQueryItem(name: "lon", value: coordinate.longitude.description),
+                      URLQueryItem(name: "dim", value: "0.15"),
+                      URLQueryItem(name: "cloud_score", value: "True")]
+            
         default:
             break
         }

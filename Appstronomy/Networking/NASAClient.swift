@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import MapKit
 
 class NASAClient: APIClient {
     
+    // Singleton
     static let sharedClient = NASAClient()
-    
     private init() {}
     
     var defaultDecoder: JSONDecoder = JSONDecoder.nasaDecoder
@@ -50,7 +51,8 @@ class NASAClient: APIClient {
                     // FIXME: latest_photos & latestPhotos seems to cause an error. FIX.
                 } else if let latestPhotos = resultDictionary["latestPhotos"] {
                     completionHandler(.success(latestPhotos))
-                    
+                } else if let latest_photos = resultDictionary["latest_photos"] {
+                    completionHandler(.success(latest_photos))
                 } else {
                     completionHandler(.failed(APIError.missingData))
                 }
@@ -59,5 +61,13 @@ class NASAClient: APIClient {
                 completionHandler(.failed(error))
             }
         }
+    }
+    
+    func getEarthImagery(for coordinate: CLLocationCoordinate2D, completionHandler: @escaping (Result<EarthImage, APIError>) -> Void) {
+        
+        let endpoint = NASAEndpoint.earthImage(coordinate: coordinate)
+        print(endpoint.request.url?.absoluteString)
+        download(from: endpoint.request, completionHandler: completionHandler)
+        
     }
 }

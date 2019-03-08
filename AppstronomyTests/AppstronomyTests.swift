@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import MapKit
 @testable import Appstronomy
 
 class AppstronomyTests: XCTestCase {
@@ -63,5 +64,23 @@ class AppstronomyTests: XCTestCase {
         
         let expectedResult = "2018-10-29"
         XCTAssertEqual(date.nasaAPIStringRepresentation(), expectedResult)
+    }
+    
+    func testEarthImageryEndpoint_CoordinateDescriptionReturnsExpectedResult() {
+        let coordinate = CLLocationCoordinate2D(latitude: 100.75, longitude: -1.5)
+        let expectedLatitude = "100.75"
+        let expectedLongitude = "-1.5"
+        
+        XCTAssertEqual(coordinate.latitude.description, expectedLatitude)
+        XCTAssertEqual(coordinate.longitude.description, expectedLongitude)
+    }
+    
+    func testEarthImageryEndpoint() {
+        let testCoordinate = CLLocationCoordinate2D(latitude: 54.5927, longitude: -5.6884)
+        let endpoint = NASAEndpoint.earthImage(coordinate: testCoordinate)
+        
+        let expectedResult = "https://api.nasa.gov/planetary/earth/imagery?\(apiQueryItem)&lat=\(testCoordinate.latitude.description)&lon=\(testCoordinate.longitude.description)&dim=0.5&cloud_score=True"
+        
+        XCTAssertEqual(endpoint.request.url!.absoluteString, expectedResult)
     }
 }

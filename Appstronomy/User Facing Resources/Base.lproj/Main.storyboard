@@ -90,7 +90,7 @@
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rover" translatesAutoresizingMaskIntoConstraints="NO" id="dsz-D6-PSE">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="129.5"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mars Rover Postcard Builder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="079-dE-9vp">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AR Rover Explorer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="079-dE-9vp">
                                                         <rect key="frame" x="0.0" y="141.5" width="374" height="48"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                         <color key="textColor" red="0.73725490196078436" green="0.76078431372549016" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

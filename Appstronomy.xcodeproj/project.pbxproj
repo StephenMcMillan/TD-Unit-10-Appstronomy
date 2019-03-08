@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		690C7C662232F6EF005AFE04 /* EarthImageViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690C7C652232F6EF005AFE04 /* EarthImageViewerController.swift */; };
+		690C7C682232F98F005AFE04 /* EarthImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690C7C672232F98F005AFE04 /* EarthImage.swift */; };
+		690C7C6A22333154005AFE04 /* AppstronomyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690C7C6922333154005AFE04 /* AppstronomyNavigationController.swift */; };
 		694098D2223160AE007A541E /* LocationSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694098D1223160AE007A541E /* LocationSearchController.swift */; };
 		694098D4223160BA007A541E /* LocationSuggestionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694098D3223160BA007A541E /* LocationSuggestionsController.swift */; };
 		694098D6223165C3007A541E /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694098D5223165C3007A541E /* DetailTableViewCell.swift */; };
@@ -45,6 +48,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		690C7C652232F6EF005AFE04 /* EarthImageViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthImageViewerController.swift; sourceTree = "<group>"; };
+		690C7C672232F98F005AFE04 /* EarthImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthImage.swift; sourceTree = "<group>"; };
+		690C7C6922333154005AFE04 /* AppstronomyNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstronomyNavigationController.swift; sourceTree = "<group>"; };
 		694098D1223160AE007A541E /* LocationSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchController.swift; sourceTree = "<group>"; };
 		694098D3223160BA007A541E /* LocationSuggestionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSuggestionsController.swift; sourceTree = "<group>"; };
 		694098D5223165C3007A541E /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -194,6 +200,7 @@
 				69789C6B222ECADA00484F06 /* AppstronomyUtils.swift */,
 				69789C6D222ECB1600484F06 /* UIViewController+Gradient.swift */,
 				69789C79222F307B00484F06 /* UIViewController+ErrorAlert.swift */,
+				690C7C6922333154005AFE04 /* AppstronomyNavigationController.swift */,
 			);
 			path = "Global Helpers";
 			sourceTree = "<group>";
@@ -221,6 +228,7 @@
 		699C1D2F22314BAD00CEB2DA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				690C7C672232F98F005AFE04 /* EarthImage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -238,6 +246,7 @@
 			children = (
 				694098D1223160AE007A541E /* LocationSearchController.swift */,
 				694098D3223160BA007A541E /* LocationSuggestionsController.swift */,
+				690C7C652232F6EF005AFE04 /* EarthImageViewerController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -376,6 +385,7 @@
 			files = (
 				69789C6E222ECB1600484F06 /* UIViewController+Gradient.swift in Sources */,
 				6992A532223009DF00B704FB /* PaddedTextField.swift in Sources */,
+				690C7C682232F98F005AFE04 /* EarthImage.swift in Sources */,
 				694098D2223160AE007A541E /* LocationSearchController.swift in Sources */,
 				69E42ED22231557600067076 /* NASAClient Helpers.swift in Sources */,
 				694098D4223160BA007A541E /* LocationSuggestionsController.swift in Sources */,
@@ -391,9 +401,11 @@
 				696656C9222E9ACE005F254E /* RoverPostcardOptionsController.swift in Sources */,
 				69789C72222EE0C500484F06 /* NASAClient.swift in Sources */,
 				6966568D222D4E60005F254E /* AppDelegate.swift in Sources */,
+				690C7C6A22333154005AFE04 /* AppstronomyNavigationController.swift in Sources */,
 				69789C85222F56DE00484F06 /* LandingViewController.swift in Sources */,
 				694098D6223165C3007A541E /* DetailTableViewCell.swift in Sources */,
 				69789C74222EE0D600484F06 /* APIClient.swift in Sources */,
+				690C7C662232F6EF005AFE04 /* EarthImageViewerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
