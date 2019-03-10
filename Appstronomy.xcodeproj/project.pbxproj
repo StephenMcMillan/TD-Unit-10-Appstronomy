@@ -10,6 +10,7 @@
 		690C7C662232F6EF005AFE04 /* EarthImageViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690C7C652232F6EF005AFE04 /* EarthImageViewerController.swift */; };
 		690C7C682232F98F005AFE04 /* EarthImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690C7C672232F98F005AFE04 /* EarthImage.swift */; };
 		690C7C6A22333154005AFE04 /* AppstronomyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690C7C6922333154005AFE04 /* AppstronomyNavigationController.swift */; };
+		690C7C6C22340E80005AFE04 /* CloudCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690C7C6B22340E80005AFE04 /* CloudCoverView.swift */; };
 		694098D2223160AE007A541E /* LocationSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694098D1223160AE007A541E /* LocationSearchController.swift */; };
 		694098D4223160BA007A541E /* LocationSuggestionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694098D3223160BA007A541E /* LocationSuggestionsController.swift */; };
 		694098D6223165C3007A541E /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694098D5223165C3007A541E /* DetailTableViewCell.swift */; };
@@ -51,6 +52,7 @@
 		690C7C652232F6EF005AFE04 /* EarthImageViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthImageViewerController.swift; sourceTree = "<group>"; };
 		690C7C672232F98F005AFE04 /* EarthImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthImage.swift; sourceTree = "<group>"; };
 		690C7C6922333154005AFE04 /* AppstronomyNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstronomyNavigationController.swift; sourceTree = "<group>"; };
+		690C7C6B22340E80005AFE04 /* CloudCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudCoverView.swift; sourceTree = "<group>"; };
 		694098D1223160AE007A541E /* LocationSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchController.swift; sourceTree = "<group>"; };
 		694098D3223160BA007A541E /* LocationSuggestionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSuggestionsController.swift; sourceTree = "<group>"; };
 		694098D5223165C3007A541E /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				690C7C672232F98F005AFE04 /* EarthImage.swift */,
+				690C7C6B22340E80005AFE04 /* CloudCoverView.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				694098D4223160BA007A541E /* LocationSuggestionsController.swift in Sources */,
 				6992A530222FE42400B704FB /* APIErrors.swift in Sources */,
 				69789C78222F289400484F06 /* ImageCollectionViewCell.swift in Sources */,
+				690C7C6C22340E80005AFE04 /* CloudCoverView.swift in Sources */,
 				696656BD222E8431005F254E /* Rover.swift in Sources */,
 				69789C7C222F355300484F06 /* ImageFlowLayout.swift in Sources */,
 				69789C70222ED47C00484F06 /* NASAEndpoint.swift in Sources */,
