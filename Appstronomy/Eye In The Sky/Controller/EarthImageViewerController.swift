@@ -55,7 +55,7 @@ class EarthImageViewerController: UIViewController {
         
         title = "Eye In The Sky"
         configureGradient(colors: AppstronomyUtils.earthColors)
-        configureShareButton()
+        configureBarButtons()
         
         cloudScoreLabel.alpha = 0.0
         imageView.alpha = 0.0
@@ -117,9 +117,16 @@ class EarthImageViewerController: UIViewController {
         cloudCoverView.setPercentage(to: earthImage.cloudScore)
     }
     
-    func configureShareButton() {
-        let shareButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(EarthImageViewerController.shareImage))
-        navigationItem.rightBarButtonItem = shareButtonItem
+    func configureBarButtons() {
+        let shareButton = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(EarthImageViewerController.shareImage))
+        navigationItem.rightBarButtonItem = shareButton
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(EarthImageViewerController.dismissNav))
+        navigationItem.leftBarButtonItem = doneButton
+    }
+    
+    @objc func dismissNav() {
+        navigationController?.dismiss(animated: true, completion: nil)
     }
     
     @objc func shareImage() {

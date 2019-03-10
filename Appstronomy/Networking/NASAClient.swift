@@ -64,10 +64,13 @@ class NASAClient: APIClient {
     }
     
     func getEarthImagery(for coordinate: CLLocationCoordinate2D, completionHandler: @escaping (Result<EarthImage, APIError>) -> Void) {
-        
         let endpoint = NASAEndpoint.earthImage(coordinate: coordinate)
-        print(endpoint.request.url?.absoluteString)
         download(from: endpoint.request, completionHandler: completionHandler)
-        
     }
+    
+    func getAstronomyPhoto(for date: Date?, completionHandler: @escaping (Result<AstronomyPhoto, APIError>) -> Void) {
+        let endpoint = NASAEndpoint.imageOfTheDay(date: date)
+        download(from: endpoint.request, completionHandler: completionHandler)
+    }
+    
 }

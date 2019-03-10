@@ -23,6 +23,8 @@ enum NASAEndpoint {
     case roverPhotos(from: String, options: RoverPhotoOptions?)
     
     case earthImage(coordinate: CLLocationCoordinate2D)
+    
+    case imageOfTheDay(date: Date?)
 }
 
 // MARK: Endpoint extension for URL Request Construction
@@ -44,6 +46,9 @@ extension NASAEndpoint {
             
         case .earthImage:
             return "/planetary/earth/imagery/"
+            
+        case .imageOfTheDay:
+            return "/planetary/apod"
         }
     }
     
@@ -63,6 +68,10 @@ extension NASAEndpoint {
                       URLQueryItem(name: "lon", value: coordinate.longitude.description),
                       URLQueryItem(name: "dim", value: "0.15"),
                       URLQueryItem(name: "cloud_score", value: "True")]
+            
+        case .imageOfTheDay(let .some(date)):
+            
+            items += [URLQueryItem(name: "date", value: date.nasaAPIStringRepresentation())]
             
         default:
             break

@@ -24,6 +24,12 @@ extension DateFormatter {
         dateFormatter.dateFormat = "YYYY-MM-dd"
         return dateFormatter
     }()
+    
+    static var longFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE dd MMMM"
+        return dateFormatter
+    }()
 }
 
 extension Date {
@@ -31,5 +37,17 @@ extension Date {
     func nasaAPIStringRepresentation() -> String {
         let formatter = DateFormatter.nasaAPIDateFormatter
         return formatter.string(from: self)
+    }
+    
+    func longFormat() -> String {
+        return DateFormatter.longFormatter.string(from: self)
+    }
+    
+    static var yesterday: Date {
+        return Calendar.current.date(byAdding: .day, value: -1, to: Date().noon)!
+    }
+    
+    var noon: Date {
+        return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
     }
 }

@@ -21,7 +21,7 @@ class LandingViewController: UIViewController {
 
         configureGradient(on: marsRoverBackingView, colors: AppstronomyUtils.marsColors)
         configureGradient(on: earthImageryBackingView, colors: AppstronomyUtils.earthColors)
-        configureGradient(on: roverBackingView, colors: AppstronomyUtils.roverColors)
+        configureGradient(on: roverBackingView, colors: AppstronomyUtils.apodColors)
         
         [marsRoverBackingView, earthImageryBackingView, roverBackingView].forEach {
             $0?.clipsToBounds = true
@@ -53,7 +53,17 @@ class LandingViewController: UIViewController {
         
         // Create a Nav Controller to manage the flow of this section.
         let navigationController = AppstronomyNavigationController(rootViewController: searchController)
+        navigationController.setNavColour(color: #colorLiteral(red: 0.2117647059, green: 0.2156862745, blue: 0.5843137255, alpha: 1))
         
         present(navigationController, animated: true , completion: nil)
     }
+    
+    @IBAction func showPictureOfTheDaySection(_ sender: Any) {
+        let pageController = PictureOfTheDayPageController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        let navigationController = AppstronomyNavigationController(rootViewController: pageController)
+        navigationController.setNavColour(color: #colorLiteral(red: 0.1725490196, green: 0.2431372549, blue: 0.3137254902, alpha: 1))
+        
+        present(navigationController, animated: true, completion: nil)
+    }
+    
 }

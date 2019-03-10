@@ -90,7 +90,7 @@
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rover" translatesAutoresizingMaskIntoConstraints="NO" id="dsz-D6-PSE">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="129.5"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AR Rover Explorer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="079-dE-9vp">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Astronomy Picture of the Day" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="079-dE-9vp">
                                                         <rect key="frame" x="0.0" y="141.5" width="374" height="48"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                         <color key="textColor" red="0.73725490196078436" green="0.76078431372549016" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -100,12 +100,16 @@
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="sGr-vd-Pm4" secondAttribute="bottom" constant="8" id="2hO-I7-PWo"/>
                                             <constraint firstAttribute="trailing" secondItem="sGr-vd-Pm4" secondAttribute="trailing" id="ePQ-x9-Axp"/>
                                             <constraint firstItem="sGr-vd-Pm4" firstAttribute="top" secondItem="fLb-SD-6Vv" secondAttribute="top" constant="8" id="g7j-9h-ErS"/>
                                             <constraint firstItem="sGr-vd-Pm4" firstAttribute="leading" secondItem="fLb-SD-6Vv" secondAttribute="leading" id="sAt-5P-fE6"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="fOi-lu-LOv" appends="YES" id="mIZ-zA-yQg"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                             </stackView>
@@ -151,6 +155,11 @@
                 <tapGestureRecognizer id="FUK-uh-vBg" userLabel="Eye in The Sky Tap Recognizer">
                     <connections>
                         <action selector="showEyeInTheSkySection:" destination="xL2-Qe-wpX" id="SoV-Rn-vCa"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="fOi-lu-LOv" userLabel="APOD Tap Recognizer">
+                    <connections>
+                        <action selector="showPictureOfTheDaySection:" destination="xL2-Qe-wpX" id="AvF-MD-wC8"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

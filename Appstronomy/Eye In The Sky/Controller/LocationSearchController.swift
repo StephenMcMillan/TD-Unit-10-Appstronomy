@@ -44,9 +44,7 @@ class LocationSearchController: UITableViewController {
         super.viewDidLoad()
         
         title = "Search for a Location"
-
-        // TODO: Fix the gradient.
-//        configureGradient(colors: AppstronomyUtils.earthColors)
+        configureDismissButton()
         
         tableView.register(DetailTableViewCell.self, forCellReuseIdentifier: DetailTableViewCell.reuseIdentifier)
 
@@ -83,6 +81,7 @@ class LocationSearchController: UITableViewController {
             
             let selectedSearchCompletionItem = locationSuggestionsController.searchCompleterResults[selectedIndex.row]
             let searchRequest = MKLocalSearch.Request(completion: selectedSearchCompletionItem)
+            dump(searchRequest)
             search(using: searchRequest)
             
             searchController.isActive = false
@@ -121,9 +120,10 @@ class LocationSearchController: UITableViewController {
         
         // 2. Start the local search
         localSearch?.start(completionHandler: { [weak self] (response, error) in
-            
+            dump(response)
             // 3. Ensure that there were no errors with the search. If there was, show an alert.
             if let error = error {
+                print("error here. \(error.localizedDescription)")
                 self?.displayAlert(for: error)
                 return
             }
@@ -133,6 +133,15 @@ class LocationSearchController: UITableViewController {
             self?.places = mapItems
             print(mapItems)
         })
+    }
+    
+    func configureDismissButton() {
+        let dismissBarButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(LocationSearchController.dismissLocationSearch))
+        navigationItem.leftBarButtonItem = dismissBarButton
+    }
+    
+    @objc func dismissLocationSearch() {
+        navigationController?.dismiss(animated: true, completion: nil)
     }
 
 }

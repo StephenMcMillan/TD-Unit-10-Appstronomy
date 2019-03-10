@@ -9,15 +9,16 @@
 import UIKit
 
 class AppstronomyNavigationController: UINavigationController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2117647059, green: 0.2156862745, blue: 0.5843137255, alpha: 1)]
-        self.navigationBar.tintColor = #colorLiteral(red: 0.2117647059, green: 0.2156862745, blue: 0.5843137255, alpha: 1)
     }
     
-
+    func setNavColour(color: UIColor) {
+        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: color]
+        self.navigationBar.tintColor = color
+    }
+    
     /*
     // MARK: - Navigation
 
