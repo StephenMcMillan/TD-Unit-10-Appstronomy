@@ -87,6 +87,7 @@ class CaptionedImageViewController: UIViewController {
         effectView.contentView.addSubview(stackView)
         
         effectView.alpha = 0.0
+        imageView.alpha = 0.0
         
         // Layout Views
         configureConstraints()
@@ -108,15 +109,18 @@ class CaptionedImageViewController: UIViewController {
     }
     
     func configure(with astronomyPhoto: AstronomyPhoto) {
-        imageView.kf.indicatorType = .activity
-        imageView.kf.setImage(with: astronomyPhoto.url, options: [.transition(ImageTransition.fade(0.4))])
         
         imageTitleLabel.text = astronomyPhoto.title
         imageAuthorLabel.text = astronomyPhoto.copyright
         explanationTextView.text = astronomyPhoto.explanation
         
-        UIView.animate(withDuration: 1.0) {
-            self.effectView.alpha = 1.0
+        imageView.kf.indicatorType = .activity
+        // Bypass Kingfisher image transition as it doesn't seem to fade in when loading from cache...
+        imageView.kf.setImage(with: astronomyPhoto.url, options: []) { [weak self] _ in
+            UIView.animate(withDuration: 0.5, animations: {
+                self?.imageView.alpha = 1.0
+                self?.effectView.alpha = 1.0
+            })
         }
     }
     

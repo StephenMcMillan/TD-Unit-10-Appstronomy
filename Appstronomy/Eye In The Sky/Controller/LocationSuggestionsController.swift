@@ -12,6 +12,7 @@ import MapKit
 
 class LocationSuggestionsController: UITableViewController {
     
+    // At the time of writing I decided not the specify a defining/bounding region as users may want to view earth imagery from any location in the world so it would not be wise to restrict the region.
     let searchCompleter = MKLocalSearchCompleter()
     
     var searchCompleterResults = [MKLocalSearchCompletion]() {
