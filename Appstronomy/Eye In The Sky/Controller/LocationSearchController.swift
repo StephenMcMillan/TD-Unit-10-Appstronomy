@@ -10,7 +10,6 @@ import UIKit
 import MapKit
 
 // Allows the User to search for a location and displays suggested loctions whilst they are doing so.
-
 class LocationSearchController: UITableViewController {
     
     lazy var locationSuggestionsController: LocationSuggestionsController = {

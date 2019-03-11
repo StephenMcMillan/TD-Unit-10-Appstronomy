@@ -50,7 +50,7 @@ class RoverPostcardOptionsController: UIViewController {
     func fetchRoverInfo() {
         // Download Mars rovers from the NASA API
         // Note to self: This VC doesn't hold a reference to the NASAClient so no need for [weak self]...
-        NASAClient.sharedClient.getRovers { (result) in
+        NASAClient().getRovers { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let rovers):

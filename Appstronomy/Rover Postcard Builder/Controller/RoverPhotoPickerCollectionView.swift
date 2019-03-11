@@ -26,6 +26,8 @@ class RoverPhotoPickerCollectionView: UIViewController {
         }
     }
     
+    let client = NASAClient()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,22 +49,22 @@ class RoverPhotoPickerCollectionView: UIViewController {
         
         guard let roverName = roverName, let photoOptions = photoOptions else { return }
         
-        NASAClient.sharedClient.getPhotos(from: roverName, options: photoOptions) { (result) in
+        client.getPhotos(from: roverName, options: photoOptions) { [weak self] (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let photos):
                     
                     guard photos.count > 0 else {
                         // If there were no photos for the users preferences then just get the latest photos.
-                        self.getLatestRoverPhotos()
+                        self?.getLatestRoverPhotos()
                         return
                     }
                     
                     // If there are some photos then we can move to the collection view.
-                    self.photos = photos
+                    self?.photos = photos
                     
                 case .failed(let error):
-                    self.displayAlert(for: error)
+                    self?.displayAlert(for: error)
                 }
             }
         }
@@ -80,14 +82,14 @@ class RoverPhotoPickerCollectionView: UIViewController {
             self.view.layoutIfNeeded()
         })
         
-        NASAClient.sharedClient.getPhotos(from: roverName, options: nil) { (result) in
+       client.getPhotos(from: roverName, options: nil) { [weak self] (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let photos):
-                    self.photos = photos
+                    self?.photos = photos
                     
                 case .failed(let error):
-                    self.displayAlert(for: error)
+                    self?.displayAlert(for: error)
                 }
             }
         }

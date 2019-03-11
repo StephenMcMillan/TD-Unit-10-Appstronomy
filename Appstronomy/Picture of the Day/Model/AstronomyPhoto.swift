@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Model of APOD Result
 struct AstronomyPhoto: Decodable {
     let date: Date
     let explanation: String

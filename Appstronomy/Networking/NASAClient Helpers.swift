@@ -43,8 +43,9 @@ extension Date {
         return DateFormatter.longFormatter.string(from: self)
     }
     
-    static var yesterday: Date {
-        return Calendar.current.date(byAdding: .day, value: -1, to: Date().noon)!
+    // Returns the date 1 day before the date passed in
+    var previousDay: Date {
+        return Calendar.current.date(byAdding: .day, value: -1, to: self.noon)!
     }
     
     var noon: Date {

@@ -12,6 +12,7 @@ struct RoverResult: Decodable {
     let rovers: [Rover]
 }
 
+// Rover Item returned from NASA API
 struct Rover: Decodable {
     let name: String
     let landingDate: Date
@@ -25,6 +26,7 @@ struct Camera: Decodable {
     let name: String
 }
 
+// Wrapper allows for easy decoding
 struct RoverPhotoResult: Decodable {
     let photos: [RoverPhoto]
 }

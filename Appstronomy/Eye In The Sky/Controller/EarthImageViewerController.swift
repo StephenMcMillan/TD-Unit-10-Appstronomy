@@ -99,7 +99,7 @@ class EarthImageViewerController: UIViewController {
         
         imageView.kf.indicatorType = .activity
         
-        NASAClient.sharedClient.getEarthImagery(for: self.coordinate) { (result) in
+        NASAClient().getEarthImagery(for: self.coordinate) { (result) in
             
             DispatchQueue.main.async {
                 switch result {

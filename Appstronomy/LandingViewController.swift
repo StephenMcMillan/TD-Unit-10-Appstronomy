@@ -19,10 +19,12 @@ class LandingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Apply a gradient to each of the section views
         configureGradient(on: marsRoverBackingView, colors: AppstronomyUtils.marsColors)
         configureGradient(on: earthImageryBackingView, colors: AppstronomyUtils.earthColors)
         configureGradient(on: roverBackingView, colors: AppstronomyUtils.apodColors)
         
+        // Some general config on each of the section views
         [marsRoverBackingView, earthImageryBackingView, roverBackingView].forEach {
             $0?.clipsToBounds = true
             $0?.layer.cornerRadius = cornerRadius

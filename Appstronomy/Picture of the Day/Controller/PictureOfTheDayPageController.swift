@@ -18,14 +18,19 @@ class PictureOfTheDayPageController: UIPageViewController, UIPageViewControllerD
         
         title = "Today"
         
+        // Assign Page Controller Delegate & Datasource
         self.dataSource = self
         self.delegate = self
         
+        // Add Bar Buttons
         configureDoneButton()
         
-        todaysImageViewController = CaptionedImageViewController(date: Date())
-        yesterdaysImageViewController = CaptionedImageViewController(date: Date.yesterday)
+        // Create Pages
+        let today = Date()
+        todaysImageViewController = CaptionedImageViewController(date: today)
+        yesterdaysImageViewController = CaptionedImageViewController(date: today.previousDay)
         
+        // Set Today Image View Controller as the Initial page
         setViewControllers([todaysImageViewController!], direction: UIPageViewController.NavigationDirection.reverse, animated: true, completion: nil)
     }
     

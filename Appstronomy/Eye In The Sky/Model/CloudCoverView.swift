@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Cloud Cover view draws an arc to represent cloud cover score
 class CloudCoverView: UIView {
     
     let shapeLayer: CAShapeLayer = CAShapeLayer()

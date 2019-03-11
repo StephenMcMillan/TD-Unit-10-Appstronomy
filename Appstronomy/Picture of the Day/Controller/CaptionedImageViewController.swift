@@ -95,7 +95,7 @@ class CaptionedImageViewController: UIViewController {
     }
     
     func downloadImage() {
-        NASAClient.sharedClient.getAstronomyPhoto(for: imageDate) { (result) in
+        NASAClient().getAstronomyPhoto(for: imageDate) { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let astroPhoto):

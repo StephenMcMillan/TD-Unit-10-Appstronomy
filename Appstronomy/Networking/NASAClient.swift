@@ -9,11 +9,18 @@
 import Foundation
 import MapKit
 
-class NASAClient: APIClient {
+enum Result<T, E: Error> {
+    case success(T)
+    case failed(E)
+}
+
+class NASAClient {
     
-    // Singleton
-    static let sharedClient = NASAClient()
-    private init() {}
+    private let session: URLSessionProtocol
+    
+    init(session: URLSessionProtocol = URLSession.shared) {
+        self.session = session
+    }
     
     var defaultDecoder: JSONDecoder = JSONDecoder.nasaDecoder
     
@@ -71,6 +78,62 @@ class NASAClient: APIClient {
     func getAstronomyPhoto(for date: Date?, completionHandler: @escaping (Result<AstronomyPhoto, APIError>) -> Void) {
         let endpoint = NASAEndpoint.imageOfTheDay(date: date)
         download(from: endpoint.request, completionHandler: completionHandler)
+    }
+    
+    fileprivate func download<Object: Decodable>(from request: URLRequest, completionHandler: @escaping (Result<Object, APIError>) -> Void) {
+        
+        // 1. Attempt to download JSON data from the URL specified.
+        downloadJSON(request: request) { (data, error) in
+            
+            // 2. If the download function returns an error, propogate the error with the result type.
+            if let error = error {
+                completionHandler(.failed(error))
+                return
+            }
+            
+            // 3. If no error was returned, try to unpack the data.
+            guard let data = data else {
+                completionHandler(.failed(.missingData))
+                return
+            }
+            
+            // 4. Try to decode the data to the type that the caller wants using the clients decoder
+            do {
+                let object = try self.defaultDecoder.decode(Object.self, from: data)
+                
+                // 5 a. Decoding successful
+                completionHandler(.success(object))
+                
+            } catch {
+                // 5 b. Something went wrong during decoding, propogate error.
+                completionHandler(.failed(.decodingFailure(reason: error.localizedDescription)))
+            }
+        }
+        
+    }
+    
+    fileprivate func downloadJSON(request: URLRequest, completionHandler: @escaping (Data?, APIError?) -> Void) {
+        
+        let task = session.dataTask(with: request) { (data, response, error) in
+            
+            if let error = error {
+                completionHandler(nil, APIError.transportError(message: error.localizedDescription))
+                return // Error so exit.
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                guard (200...299).contains(httpResponse.statusCode) else {
+                    completionHandler(nil, APIError.invalidResponse(statusCode: httpResponse.statusCode))
+                    return // Error so exit.
+                }
+            }
+            
+            // No errors and a valid HTTP response = success (hopefully.)
+            completionHandler(data, nil)
+            
+        }
+        
+        task.resume()
     }
     
 }
