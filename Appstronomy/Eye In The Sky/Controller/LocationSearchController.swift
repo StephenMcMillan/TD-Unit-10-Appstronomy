@@ -123,7 +123,6 @@ class LocationSearchController: UITableViewController {
             dump(response)
             // 3. Ensure that there were no errors with the search. If there was, show an alert.
             if let error = error {
-                print("error here. \(error.localizedDescription)")
                 self?.displayAlert(for: error)
                 return
             }

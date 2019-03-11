@@ -58,29 +58,27 @@ extension APIClient {
         }
         
     }
-
+    
     private func downloadJSON(request: URLRequest, completionHandler: @escaping (Data?, APIError?) -> Void) {
         let session = URLSession.shared
         
         let task = session.dataTask(with: request) { (data, response, error) in
             
-            DispatchQueue.main.async {
-                if let error = error {
-                    completionHandler(nil, APIError.transportError(message: error.localizedDescription))
+            if let error = error {
+                completionHandler(nil, APIError.transportError(message: error.localizedDescription))
+                return // Error so exit.
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                guard (200...299).contains(httpResponse.statusCode) else {
+                    completionHandler(nil, APIError.invalidResponse(statusCode: httpResponse.statusCode))
                     return // Error so exit.
                 }
-                
-                if let httpResponse = response as? HTTPURLResponse {
-                    guard (200...299).contains(httpResponse.statusCode) else {
-                        completionHandler(nil, APIError.invalidResponse(statusCode: httpResponse.statusCode))
-                        return // Error so exit.
-                    }
-                }
-                
-                // No errors and a valid HTTP response = success (hopefully.)
-                completionHandler(data, nil)
             }
-        
+            
+            // No errors and a valid HTTP response = success (hopefully.)
+            completionHandler(data, nil)
+            
         }
         
         task.resume()

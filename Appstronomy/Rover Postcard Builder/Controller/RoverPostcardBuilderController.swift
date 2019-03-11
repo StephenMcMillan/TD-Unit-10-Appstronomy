@@ -23,6 +23,7 @@ class RoverPostcardBuilderController: UIViewController {
         super.viewDidLoad()
         
         configureGradient(colors: AppstronomyUtils.marsColors)
+        configureDoneBarButton()
         
         // Set up the preview image with the inital, unedited image.
         previewImageView.image = image
@@ -99,6 +100,16 @@ class RoverPostcardBuilderController: UIViewController {
                 scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardEndFrame.cgRectValue.height, right: 0)
             }
         }
+    }
+    
+    // MARK: Dismiss Functionaility
+    func configureDoneBarButton() {
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(RoverPostcardBuilderController.returnToMenu))
+        navigationItem.rightBarButtonItem = doneButton
+    }
+    
+    @objc func returnToMenu() {
+        navigationController?.dismiss(animated: true, completion: nil)
     }
     
     deinit {

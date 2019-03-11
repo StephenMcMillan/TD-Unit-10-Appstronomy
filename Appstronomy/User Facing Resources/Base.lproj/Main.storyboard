@@ -87,11 +87,11 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="sGr-vd-Pm4">
                                                 <rect key="frame" x="0.0" y="8" width="374" height="189.5"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rover" translatesAutoresizingMaskIntoConstraints="NO" id="dsz-D6-PSE">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="129.5"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="observatory" translatesAutoresizingMaskIntoConstraints="NO" id="dsz-D6-PSE">
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="134.5"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Astronomy Picture of the Day" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="079-dE-9vp">
-                                                        <rect key="frame" x="0.0" y="141.5" width="374" height="48"/>
+                                                        <rect key="frame" x="0.0" y="146.5" width="374" height="43"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                         <color key="textColor" red="0.73725490196078436" green="0.76078431372549016" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -646,6 +646,6 @@
         <image name="astronaut" width="118" height="120"/>
         <image name="earth" width="88" height="91"/>
         <image name="mars" width="88" height="88"/>
-        <image name="rover" width="102" height="78"/>
+        <image name="observatory" width="88" height="88"/>
     </resources>
 </document>

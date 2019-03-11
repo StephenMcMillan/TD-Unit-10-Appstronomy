@@ -14,3 +14,15 @@ struct AppstronomyUtils {
     static let earthColors: [UIColor] = [#colorLiteral(red: 0.0862745098, green: 0.4862745098, blue: 0.7411764706, alpha: 1),#colorLiteral(red: 0.2117647059, green: 0.2156862745, blue: 0.5843137255, alpha: 1)]
     static let apodColors: [UIColor] = [#colorLiteral(red: 0.7411764706, green: 0.7647058824, blue: 0.7803921569, alpha: 1), #colorLiteral(red: 0.1725490196, green: 0.2431372549, blue: 0.3137254902, alpha: 1)]
 }
+
+enum NASAAppError: LocalizedError {
+    // Rover Section
+    case noPhotosForOptionsSelected
+    
+    var errorDescription: String? {
+        switch self {
+        case .noPhotosForOptionsSelected:
+            return "These little rovers are amazing but it doesn't seem like there are any pictures for the options you selected. Try selecting a different date or camera and try again."
+        }
+    }
+}

@@ -100,13 +100,16 @@ class EarthImageViewerController: UIViewController {
         imageView.kf.indicatorType = .activity
         
         NASAClient.sharedClient.getEarthImagery(for: self.coordinate) { (result) in
-            switch result {
-                
-            case .success(let earthImage):
-                self.configure(with: earthImage)
-                
-            case .failed(let error):
-                self.displayAlert(for: error)
+            
+            DispatchQueue.main.async {
+                switch result {
+                    
+                case .success(let earthImage):
+                    self.configure(with: earthImage)
+                    
+                case .failed(let error):
+                    self.displayAlert(for: error)
+                }
             }
         }
     }

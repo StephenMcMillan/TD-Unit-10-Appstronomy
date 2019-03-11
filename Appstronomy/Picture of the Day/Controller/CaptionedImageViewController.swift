@@ -96,11 +96,13 @@ class CaptionedImageViewController: UIViewController {
     
     func downloadImage() {
         NASAClient.sharedClient.getAstronomyPhoto(for: imageDate) { (result) in
-            switch result {
-            case .success(let astroPhoto):
-                self.configure(with: astroPhoto)
-            case .failed(let error):
-                self.displayAlert(for: error)
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let astroPhoto):
+                    self.configure(with: astroPhoto)
+                case .failed(let error):
+                    self.displayAlert(for: error)
+                }
             }
         }
     }

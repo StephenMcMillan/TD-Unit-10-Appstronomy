@@ -8,18 +8,6 @@
 
 import UIKit
 
-enum NASAAppError: LocalizedError {
-    // Rover Section
-    case noPhotosForOptionsSelected
-    
-    var errorDescription: String? {
-        switch self {
-        case .noPhotosForOptionsSelected:
-            return "These little rovers are amazing but it doesn't seem like there are any pictures for the options you selected. Try selecting a different date or camera and try again."
-        }
-    }
-}
-
 class RoverPostcardOptionsController: UIViewController {
     
     private let expandedSectionHeight: CGFloat = 200.0
@@ -63,13 +51,15 @@ class RoverPostcardOptionsController: UIViewController {
         // Download Mars rovers from the NASA API
         // Note to self: This VC doesn't hold a reference to the NASAClient so no need for [weak self]...
         NASAClient.sharedClient.getRovers { (result) in
-            switch result {
-            case .success(let rovers):
-                self.rovers = rovers
-
-            case .failed(let error):
-                self.displayAlert(for: error)
-                
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let rovers):
+                    self.rovers = rovers
+                    
+                case .failed(let error):
+                    self.displayAlert(for: error)
+                    
+                }
             }
         }
     }
@@ -129,6 +119,7 @@ class RoverPostcardOptionsController: UIViewController {
         }
     }
 }
+
 extension RoverPostcardOptionsController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -142,7 +133,6 @@ extension RoverPostcardOptionsController: UITableViewDataSource {
         }
         
         return 0
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -161,7 +151,6 @@ extension RoverPostcardOptionsController: UITableViewDataSource {
         
         return cell
     }
-    
 }
 
 extension RoverPostcardOptionsController: UITableViewDelegate {
