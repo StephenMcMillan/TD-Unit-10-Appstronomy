@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum APIError: Error, LocalizedError {
+enum APIError: Error, LocalizedError, Equatable {
     case transportError(message: String)
     case invalidResponse(statusCode: Int)
     case missingData

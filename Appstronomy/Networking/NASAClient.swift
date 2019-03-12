@@ -112,7 +112,7 @@ class NASAClient {
         
     }
     
-    fileprivate func downloadJSON(request: URLRequest, completionHandler: @escaping (Data?, APIError?) -> Void) {
+    func downloadJSON(request: URLRequest, completionHandler: @escaping (Data?, APIError?) -> Void) {
         
         let task = session.dataTask(with: request) { (data, response, error) in
             
@@ -130,7 +130,6 @@ class NASAClient {
             
             // No errors and a valid HTTP response = success (hopefully.)
             completionHandler(data, nil)
-            
         }
         
         task.resume()

@@ -19,7 +19,8 @@
 		695DC171223556C600DD4224 /* AstronomyPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695DC170223556C600DD4224 /* AstronomyPhoto.swift */; };
 		696444892236C6B800BE6763 /* NASAEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696444882236C6B800BE6763 /* NASAEndpointTests.swift */; };
 		6964448B2236C8E400BE6763 /* NASAClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6964448A2236C8E400BE6763 /* NASAClientTests.swift */; };
-		6964448D2236CE6D00BE6763 /* Test Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6964448C2236CE6D00BE6763 /* Test Helpers.swift */; };
+		6964449022372A4F00BE6763 /* Mock Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6964448C2236CE6D00BE6763 /* Mock Session.swift */; };
+		6964449222372A9D00BE6763 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6964449122372A9D00BE6763 /* URLSessionProtocol.swift */; };
 		6966568D222D4E60005F254E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6966568C222D4E60005F254E /* AppDelegate.swift */; };
 		69665692222D4E60005F254E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69665690222D4E60005F254E /* Main.storyboard */; };
 		69665694222D4E63005F254E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69665693222D4E63005F254E /* Assets.xcassets */; };
@@ -66,7 +67,8 @@
 		695DC170223556C600DD4224 /* AstronomyPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyPhoto.swift; sourceTree = "<group>"; };
 		696444882236C6B800BE6763 /* NASAEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAEndpointTests.swift; sourceTree = "<group>"; };
 		6964448A2236C8E400BE6763 /* NASAClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAClientTests.swift; sourceTree = "<group>"; };
-		6964448C2236CE6D00BE6763 /* Test Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Test Helpers.swift"; sourceTree = "<group>"; };
+		6964448C2236CE6D00BE6763 /* Mock Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mock Session.swift"; sourceTree = "<group>"; };
+		6964449122372A9D00BE6763 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		69665689222D4E60005F254E /* Appstronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appstronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6966568C222D4E60005F254E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		69665691222D4E60005F254E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 		696656A0222D4E63005F254E /* AppstronomyTests */ = {
 			isa = PBXGroup;
 			children = (
+				6964448C2236CE6D00BE6763 /* Mock Session.swift */,
 				696656A1222D4E63005F254E /* AppstronomyTests.swift */,
 				696444882236C6B800BE6763 /* NASAEndpointTests.swift */,
 				6964448A2236C8E400BE6763 /* NASAClientTests.swift */,
@@ -192,7 +195,7 @@
 				69E42ED12231557600067076 /* NASAClient Helpers.swift */,
 				69789C6F222ED47C00484F06 /* NASAEndpoint.swift */,
 				6992A52F222FE42400B704FB /* APIErrors.swift */,
-				6964448C2236CE6D00BE6763 /* Test Helpers.swift */,
+				6964449122372A9D00BE6763 /* URLSessionProtocol.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6964449222372A9D00BE6763 /* URLSessionProtocol.swift in Sources */,
 				69789C6E222ECB1600484F06 /* UIViewController+Gradient.swift in Sources */,
 				6992A532223009DF00B704FB /* PaddedTextField.swift in Sources */,
 				695DC171223556C600DD4224 /* AstronomyPhoto.swift in Sources */,
@@ -449,7 +453,6 @@
 				695DC16D22354D9400DD4224 /* PictureOfTheDayPageController.swift in Sources */,
 				69789C72222EE0C500484F06 /* NASAClient.swift in Sources */,
 				6966568D222D4E60005F254E /* AppDelegate.swift in Sources */,
-				6964448D2236CE6D00BE6763 /* Test Helpers.swift in Sources */,
 				690C7C6A22333154005AFE04 /* AppstronomyNavigationController.swift in Sources */,
 				69789C85222F56DE00484F06 /* LandingViewController.swift in Sources */,
 				694098D6223165C3007A541E /* DetailTableViewCell.swift in Sources */,
@@ -461,6 +464,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6964449022372A4F00BE6763 /* Mock Session.swift in Sources */,
 				696656A2222D4E63005F254E /* AppstronomyTests.swift in Sources */,
 				6964448B2236C8E400BE6763 /* NASAClientTests.swift in Sources */,
 				696444892236C6B800BE6763 /* NASAEndpointTests.swift in Sources */,

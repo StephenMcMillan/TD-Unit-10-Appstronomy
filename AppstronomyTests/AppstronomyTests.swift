@@ -22,21 +22,21 @@ class AppstronomyTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testNASAClient_CreatesCorrectDate() {
+    func testCreatesCorrectDate() {
         let date = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 29).date!
         
         let expectedResult = "2018-10-29"
         XCTAssertEqual(date.nasaAPIStringRepresentation(), expectedResult)
     }
     
-    func testNASAClient_YesterdayDate() {
+    func testYesterdayDate() {
         let date = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 29).date!
         let dayBeforeDate = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 28).date!.noon
         
         XCTAssertEqual(date.previousDay, dayBeforeDate)
     }
     
-    func testNASAClient_LongDateFormatHelper() {
+    func testLongDateFormatHelper() {
         let testDate = DateComponents(calendar: Calendar.current, year: 2019, month: 3, day: 11).date!
         
         let expectedResult = "Monday 11 March"
