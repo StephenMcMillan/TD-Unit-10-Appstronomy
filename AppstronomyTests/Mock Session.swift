@@ -27,7 +27,6 @@ class MockURLSession: URLSessionProtocol {
 }
 
 class MockURLSessionDataTask: URLSessionDataTaskProtocol {
-    
     private (set) var resumeCalled: Bool = false
     
     func resume() {
